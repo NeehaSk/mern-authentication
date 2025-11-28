@@ -5,6 +5,7 @@ const User =require("../models/User.js") //to check schema
 const jwt = require("jsonwebtoken")  //It is a package (library) in Node.js. 
 
 
+
  const generateTokens=(user) =>{
     const accesssToken =jwt.sign(
         {id:user._id,email:user.email},

@@ -23,7 +23,7 @@ const {loginUser}=useContext(AuthContext)
   function handleSubmit(e) {
     e.preventDefault()
     console.log(formData)
-    axios.post(`${import.meta.env.VITE_API_URL}/api/login`, formData)
+    axios.post(`${import.meta.env.VITE_API_URL}/api/login`, formData,{withCredentials:true})
       .then((res) => {
         console.log(res.data.message)
         alert(res.data.message)

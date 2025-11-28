@@ -3,7 +3,7 @@ const app = express()
 const cors = require("cors")
 const mongoose = require("mongoose")
 const authRoutes= require("./routes/auth.js")
-const cookiePrser =require("cookie-parser")
+const cookiePraser =require("cookie-parser")
 const dashboardRoutes=require("./routes/dashboard.js")     // assign 
 require("dotenv").config()                                 //                
 
@@ -15,6 +15,7 @@ app.use(cors({
                                          //cors() allows frontend and backend to communicate.
 app.use(express.urlencoded({extended:true}))             //from fend api/server data accesss cheskodaniki
 app.use(express.json())
+app.use(cookiePraser())
 
 
 mongoose.connect(process.env.MONGODB_URL)                 // data connection 
@@ -30,7 +31,6 @@ app.use("/api",dashboardRoutes) // passing routes
 
 app.listen(process.env.PORT,()=>
     console.log("Started server")) // to start server
-
 
 
 
