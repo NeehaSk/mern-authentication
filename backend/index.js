@@ -9,7 +9,7 @@ require("dotenv").config()                                 //
 
 
 app.use(cors({
-    origin:"http//localhost:5173",
+    origin:"https://mern-authentication-frontend-qgik.onrender.com",
     credentials:true,
 })) 
                                          //cors() allows frontend and backend to communicate.
