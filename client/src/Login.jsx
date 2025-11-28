@@ -1,15 +1,9 @@
 import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import { AuthContext } from './context/AuthContext'
-import { useNavigate } from 'react-router-dom'
 
 export default function Login() {
-const navigate =useNavigate
-const {loginUser}=useContext(AuthContext)
-
-
-
-
+  const {loginUser} = useContext(AuthContext)
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -25,31 +19,28 @@ const {loginUser}=useContext(AuthContext)
     console.log(formData)
     axios.post(`${import.meta.env.VITE_API_URL}/api/login`, formData,{withCredentials:true})
       .then((res) => {
-        console.log(res.data.message)
+        console.log(res)
         alert(res.data.message)
-        // localStorage.setItem("token", res.data.token)       // to save token
+        //store the tocken in frontend
+        // localStorage.setItem("token", res.data.token)
         loginUser(res.data)
       })
       .catch((err) => {
         console.log(err)
         alert(err.response.data.message)
+
       })
 
   }
   return (
     <div>
       <form action="" onSubmit={handleSubmit}>
-        <input type="email" name="email" value={formData.email} placeholder=' enter email' onChange={handleChange} /><br/>
-        <input type="password" name='password' value={formData.password} placeholder='enter your password' onChange={handleChange} /><br/>
+        <input type="email" name="email" value={formData.email} placeholder=' enter email' onChange={handleChange} />
+        <br />
+        <input type="password" name='password' value={formData.password} placeholder='enter your password' onChange={handleChange} />
+        <br />
         <button>Submit</button>
       </form>
     </div>
   )
 }
-
-
-
-
-
-
-
