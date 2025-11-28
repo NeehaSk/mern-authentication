@@ -1,0 +1,20 @@
+const jwt= require("jsonwebtoken") // to check api // valid or not user login ayyada ledaa
+const authMiddleware=(req,res,next)=>{
+    try{  
+        const token=req.headers["authorization"]
+        if(!token){
+            return res.status(401).json({"message":"No token provided"})
+
+        }
+        const finalToken=token.split(" ")[1]          
+        const decoded=jwt.verify(finalToken,process.env.JWT_SECRET)
+        req.user=decoded           //final token decoded //auth.js ki connection with dashboard 
+        next()                     //method in dashdoard
+    }
+
+    catch(err){
+        return res.status(401).json({"message":"Invalid token or token get expired"})
+    }
+}
+    
+   module.exports=authMiddleware
